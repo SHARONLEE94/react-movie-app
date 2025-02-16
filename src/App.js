@@ -1,7 +1,8 @@
 import './App.css';
-import { Routes, Route, Outlet } from 'react-dom'
+import { Routes, Route, Outlet } from 'react-router-dom'
+// import Nav from './components/Nav';
 import Nav from './components/Nav';
-import LoginPage from './components/';
+import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
 import SearchPage from './pages/SearchPage';
 import DetailPage from './pages/DetailPage';
