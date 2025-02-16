@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from '../api/axios'
+import './Row.css'
 
 function Row({title, id, fetchUrl }) {
 
