@@ -15,12 +15,12 @@ const MovieModal = ({
     <div className='presentation' role='presentation'>
       <div className='wrapper-modal'>
         <div className='modal'>
-          <sapn
+          <span
             className='modal-close'
             onClick={() => setModalOpen(false)}
           >
             X
-          </sapn>
+          </span>
           <img 
             className='modal__poster-img'
             src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}

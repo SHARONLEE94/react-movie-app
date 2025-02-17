@@ -62,7 +62,6 @@ function Row({title, id, fetchUrl }) {
           </span>
         </div>
       </div>
-      {console.log(modalOpen)}
       { modalOpen &&
         <MovieModal
           {...movieSelected}
