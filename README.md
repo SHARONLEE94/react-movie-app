@@ -46,3 +46,6 @@ API 요청, 입력 필터링, UI 최적화 등에 활용됨.
 - 직접 구현하거나 lodash.debounce를 사용할 수 있음.
 - debounce는 마지막 호출 이후 일정 시간이 지나야 실행됨.
 - UI 코드가 모든 이벤트를 처리할 필요가 없고 서버로 전송되는 API 호출 수도 줄어들어 성능 향상에 도움이 됨.
+
+## Swiper 모듈
+`https://swiperjs.com/react`
