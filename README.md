@@ -65,3 +65,21 @@ Firebase는 Google에서 제공하는 **클라우드 기반 백엔드 서비스(
 - NoSQL 구조라 복잡한 쿼리 처리 어려움
 - 무료 요금제에서 일부 기능 제한 있음
 - Google 생태계 의존도가 높아지는 문제
+
+## localStorage
+localStorage는 브라우저의 저장소로, 데이터를 로컬에 영구적으로 저장 가능하며, 브라우저를 닫거나 컴퓨터를 재부팅해도 데이터가 유지된다.
+**특징**
+1. localStorage는 문자열 기반으로 영구 저장하는 브라우저 저장소
+2. 5MB 제한이 있으며, 보안에 주의해야 한다.
+3. 객체 저장 시 JSON.stringify() & JSON.parse() 사용
+4. 데이터 삭제 시 removeItem() 또는 clear() 활용
+5. sessionStorage는 브라우저 탭이 닫히면 데이터가 사라짐 (일시적 데이터 저장에 적합)
+```js
+// 객체 저장
+const user = { name: "sharon", age: 25 };
+localStorage.setItem("user", JSON.stringify(user));
+// 객체 불러오기
+const storedUser = JSON.parse(localStorage.getItem("user"));
+console.log(storedUser.name); // "sharon"
+console.log(storedUser.age); // 25
+```
