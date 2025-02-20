@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
 import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -56,6 +56,15 @@ const Nav = () => {
       })
   }
 
+  const handleSignOut = () => {
+    signOut(auth).then(()=> {
+      setUserData({})
+      navigate(`/`)
+    }).catch((e)=>{
+      console.log(e)
+    })
+  }
+
   return (
     <NavWrapper $show={show}>
       <Logo>
@@ -76,11 +85,10 @@ const Nav = () => {
               placeholder='검색해주세요' />
 
             <SignOut>
-              <UserImg src={userData.photoURL} alt={userData.displayName}>
+              <UserImg src={userData.photoURL} alt={userData.displayName} />
                 <DropDown>
-                  <span>SignOut</span>
+                  <span onClick={handleSignOut}>SignOut</span>
                 </DropDown>
-              </UserImg>
             </SignOut>
         </> )
       }
@@ -90,9 +98,42 @@ const Nav = () => {
 
 export default Nav
 
-const SignOut = styled.div``
-const UserImg = styled.div``
-const DropDown = styled.div``
+const DropDown = styled.div`
+  position: absolute;
+  top: 48px;
+  right: 0px;
+  background: rgb(19, 19, 19)
+  border: 1px solid rgba(151, 151, 151, 0.34);
+  border-radius:  4px;
+  box-shadow: rgb(0 0 0 /50%) 0px 0px 18px 0px;
+  padding: 10px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  width: 100%;
+  opacity: 0;
+  `
+
+const SignOut = styled.div`
+  position: relative;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    ${DropDown} {
+      opacity: 1;
+      transition-duration: 1s;
+    }
+  }
+`
+const UserImg = styled.img`
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+`
 
 const Login = styled.a`
   background-color: rgba(0,0,0,0.6);
