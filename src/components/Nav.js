@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
 import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -11,6 +11,19 @@ const Nav = () => {
   const navigate = useNavigate()
   const auth = getAuth()
   const provider = new GoogleAuthProvider()
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if(user) {
+        if(pathname === "/") {
+          navigate("/main")
+        }
+      }else {
+        navigate("/")
+      }
+    })
+  }, [])
+  
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
