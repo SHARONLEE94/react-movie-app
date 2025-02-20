@@ -11,6 +11,7 @@ const Nav = () => {
   const navigate = useNavigate()
   const auth = getAuth()
   const provider = new GoogleAuthProvider()
+  const [userData, setUserData] = useState({})
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -47,12 +48,14 @@ const Nav = () => {
 
   const handleAuth = () => {
     signInWithPopup(auth, provider)
-      .then(res=>{})
+      .then(res=>{
+        setUserData(res.user)
+      })
       .catch(e => {
         console.log(e)
       })
   }
-  
+
   return (
     <NavWrapper $show={show}>
       <Logo>
@@ -64,18 +67,32 @@ const Nav = () => {
       </Logo>
       { pathname === "/" 
         ? (<Login onClick={handleAuth}>Login</Login>) 
-        : (<Input 
-            value={searchValue}
-            onChange={handleChange}
-            className='nav__input' 
-            type='text'
-            placeholder='검색해주세요' />) }
+        :(<>
+          <Input 
+              value={searchValue}
+              onChange={handleChange}
+              className='nav__input' 
+              type='text'
+              placeholder='검색해주세요' />
+
+            <SignOut>
+              <UserImg src={userData.photoURL} alt={userData.displayName}>
+                <DropDown>
+                  <span>SignOut</span>
+                </DropDown>
+              </UserImg>
+            </SignOut>
+        </> )
+      }
     </NavWrapper>
   )
 }
 
 export default Nav
 
+const SignOut = styled.div``
+const UserImg = styled.div``
+const DropDown = styled.div``
 
 const Login = styled.a`
   background-color: rgba(0,0,0,0.6);
